@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eiscafé Tiziano – Lieferkarte</title>
+<meta name="description" content="Eiscafé Tiziano – Lieferkarte" />
+<style>
+  :root{
+    --stroke:#e5e7eb;--muted:#6b7280;--max:980px;
+    --shadow:0 6px 16px rgba(0,0,0,.08);--radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{
+    margin:0;
+    background:#fff;
+    color:#111827;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  }
+
+  /* 🟢 Nagłówek – powiększony, oba słowa w tym samym stylu */
+  header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--stroke);
+  }
+  .bar{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:.8rem 1rem; /* trochę wyższy pasek */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:.5rem;
+  }
+  .title{
+    font-weight:700;
+    font-size:1.15rem; /* większy rozmiar */
+    letter-spacing:.3px;
+  }
+  .divider{
+    font-weight:400;
+    color:var(--muted);
+    font-size:1.15rem;
+  }
+
+  main{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:10px .9rem 44px;
+  }
+
+  .sheet{
+    display:block;
+    width:100%;
+    height:auto;
+    margin:14px 0;
+    border:1px solid var(--stroke);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    background:#fff;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="title">Eiscafé Tiziano</div>
+      <div class="divider">– Lieferkarte</div>
+    </div>
+  </header>
+
+  <main id="stack"></main>
+
+  <script>
+    const order=[
+      "menu-01.jpeg","menu-02.jpeg","menu-03.jpeg",
+      "menu-04.jpeg","menu-05.jpeg","menu-06.jpeg",
+      "menu-07.jpeg","menu-08.jpeg","menu-09.jpeg",
+      "menu-10.jpeg","menu-11.jpeg"
+    ];
+    const stack=document.getElementById('stack');
+    order.forEach(src=>{
+      const img=new Image();
+      img.className='sheet';
+      img.alt=src;
+      img.loading='lazy';
+      img.decoding='async';
+      img.src=src;
+      img.onerror=()=>img.remove();
+      stack.appendChild(img);
+    });
+  </script>
+</body>
+</html>
